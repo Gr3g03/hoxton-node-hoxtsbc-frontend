@@ -42,9 +42,12 @@ const SignupForm = ({ isOpen, handleClose }: Props) => {
 
   if (!isOpen) return null;
 
+
+
+
   return (
     <div className="SignupForm_modal" onClick={handleCloseModal}>
-      <form className='SignupForm_form'>
+      <form className='SignupForm_form' >
         <TextField value={values.email} placeholder='Email' handleChange={getHandleChange('email')} />
         <TextField value={values.password} placeholder='Password' type='password' handleChange={getHandleChange('password')} />
         <TextField value={values.fullName} placeholder='Full name' handleChange={getHandleChange('fullName')} />

@@ -11,6 +11,8 @@ const App = function () {
   const [shouldShowRegisterModal, setShouldShowRegisterModal] = React.useState<boolean>(false)
   const [error, setError] = React.useState(null)
 
+
+
   React.useEffect(() => {
     api.signInWithJWT()
       .then(resp => {
