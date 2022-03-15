@@ -2,7 +2,7 @@ import { RequestBody } from "./types";
 
 
 // FINISH-ME: set to your server's endpoint
-export const host = `http://localhost:4000/register`;
+export const host = `http://localhost:4000`;
 
 export const sendRequest = async (endpoint: string, method: string, bodyParam?: RequestBody, token?: string) => {
   const headers: any = {
@@ -37,24 +37,24 @@ export const handleSignUp = async (body: RequestBody) => {
 export const handleLogin = async (body: RequestBody) => {
   const result = await sendRequest('login', 'POST', body);
 
-  const { data, token, error } = result;
+  const { data, token, error } = result
   // FINISH-ME: set token in local storage
   localStorage.setItem('token', token)
-  return { data, error }
+  return { data: result.user, error }
 }
 
 export const signInWithJWT = async () => {
 
   let token; // FINISH-ME: check for token
   // Note: if token is not found, it can be 'undefined'(string)
-  if (token) {
-    localStorage.setItem('token', token)
+  if (localStorage.token) {
 
+    const result = await sendRequest('banking-info', 'POST', undefined, token);
+
+    return result || null;
   } else {
-    alert('Oops, something went wrong.')
+    return undefined
   }
 
-  const result = await sendRequest('banking-info', 'GET', undefined, token);
 
-  return result || null;
 }
